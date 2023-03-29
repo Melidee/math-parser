@@ -54,9 +54,9 @@ public class MathEval {
                     if (parenCounter == 0 && !unnested) {
                         double a = MathEval.parse(nestedExpression);
                         expression.add(a);
-                        nestedExpression.clear();
                     } else if (parenCounter == 0 && unnested) {
                         expression.add(evalTokens(nestedExpression));
+                        nestedExpression.clear();
                     }
                 } else {
                     if (parenCounter != 0) {
@@ -113,8 +113,8 @@ public class MathEval {
             System.out.println("Enter an equation to parse (exit to quit): ");
             while (true) {
                 String input = sc.nextLine();
-                if (input == "exit") {
-                    break;
+                if (input.equals("exit")) {
+                    System.exit(0);
                 }
                 System.out.println(evaluate(input));
                 System.out.println("");
