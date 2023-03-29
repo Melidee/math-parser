@@ -109,15 +109,16 @@ public class MathEval {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter an equation to parse (exit to quit): ");
-        while (true) {
-            String input = sc.nextLine();
-            if (input == "exit") {
-                break;
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.println("Enter an equation to parse (exit to quit): ");
+            while (true) {
+                String input = sc.nextLine();
+                if (input == "exit") {
+                    break;
+                }
+                System.out.println(evaluate(input));
+                System.out.println("");
             }
-            System.out.println(evaluate(input));
-            System.out.println("");
         }
     }
 }
