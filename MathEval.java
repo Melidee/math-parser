@@ -1,12 +1,25 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class MathEval {
+
     private static ArrayList<Object> tokenize(String input) {
+        ArrayList<Character> stack = new ArrayList<>();
+        for (char c : input.toCharArray()) {
+            if (c == '-' && (stack.size() == 0 || "+-*/^(".indexOf(stack.get(stack.size() - 1)) != -1)) {
+                stack.add('0');
+            } else if (c == '(' && stack.size() != 0 && "1234567890)".indexOf(stack.get(stack.size() - 1)) != -1) {
+                stack.add('*');
+            } else if (c == ' ') {
+                continue;
+            }
+            stack.add(c);
+        }
         String numBuf = "";
         ArrayList<Object> tokens = new ArrayList<Object>();
-        for (char c : input.toCharArray()) {
+        for (char c : stack) {
             if (c == ' ') {
                 continue;
             } else if ("+-*/^()".indexOf(c) != -1) {
